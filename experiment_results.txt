@@ -1,0 +1,226 @@
+
+======================================================================
+THỬ NGHIỆM 1: Temperature trên nhiều model (Câu 1.1)
+======================================================================
+Prompt: Hãy kể cho tôi một sự thật thú vị về Việt Nam.
+
+
+--- Model: gpt-4o ---
+  Temp 0.0: Một sự thật thú vị về Việt Nam là đất nước này có một hệ thống hang động tự nhiên lớn nhất thế giới, đó là hang Sơn Đoòn...
+    Latency: 4.36s
+  Temp 0.5: Một sự thật thú vị về Việt Nam là đất nước này có một hệ thống hang động kỳ vĩ và lớn nhất thế giới, đó là hang Sơn Đoòn...
+    Latency: 2.79s
+  Temp 1.0: Một sự thật thú vị về Việt Nam là đất nước này sở hữu hang động lớn nhất thế giới, được gọi là Hang Sơn Đoòng. Hang Sơn ...
+    Latency: 2.93s
+  Temp 1.5: Một sự thật thú vị về Việt Nam là đèn lồng Hội An. Thành phố Hội An, nằm ở miền trung Việt Nam, nổi tiếng với lễ hội đèn...
+    Latency: 3.33s
+
+--- Model: gpt-4o-mini ---
+  Temp 0.0: Một sự thật thú vị về Việt Nam là đất nước này có hơn 3.000 km bờ biển, với nhiều bãi biển đẹp và nổi tiếng như Đà Nẵng,...
+    Latency: 1.96s
+  Temp 0.5: Một sự thật thú vị về Việt Nam là đất nước này có hơn 3.000 km bờ biển, với nhiều bãi biển đẹp nổi tiếng như Đà Nẵng, Nh...
+    Latency: 3.02s
+  Temp 1.0: Một sự thật thú vị về Việt Nam là đất nước này có hơn 3.000 km bờ biển, trải dọc từ Bắc đến Nam và có nhiều bãi biển đẹp...
+    Latency: 3.18s
+  Temp 1.5: Một sự thật thú vị về Việt Nam là đất nước này có đến 54 dân tộc anh em. Mỗi dân tộc đều có văn hóa, truyền thống và pho...
+    Latency: 3.74s
+
+--- Model: deepseek-chat ---
+  Temp 0.0: [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in gr...
+    Latency: 0s
+  Temp 0.5: [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in gr...
+    Latency: 0s
+  Temp 1.0: [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in gr...
+    Latency: 0s
+  Temp 1.5: [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in gr...
+    Latency: 0s
+
+--- Model: gemini-2.5-flash ---
+  Temp 0.0: Chắc chắn rồi! Đây là một sự...
+    Latency: 2.98s
+  Temp 0.5: Chắc chắn rồi! Dưới đây là một vài...
+    Latency: 3.1s
+  Temp 1.0: Chắc chắn rồi! Một sự thật thú vị về...
+    Latency: 2.88s
+  Temp 1.5: Chắc chắn rồi! Đây là một sự thật thú...
+    Latency: 2.7s
+
+--- Model: claude-sonnet-4-20250514 ---
+  Temp 0.0: Một sự thật thú vị về Việt Nam là: Việt Nam là nước xuất khẩu cà phê lớn thứ hai thế giới, chỉ sau Brazil. Điều đặc biệt...
+    Latency: 12.83s
+  Temp 0.5: Chắc chắn rồi! Một sự thật thú vị về Việt Nam là quốc gia này có hàng nghìn hang động tuyệt đẹp, trong đó có Sơn Đoòng ở...
+    Latency: 8.18s
+  Temp 1.0: Một sự thật thú vị về Việt Nam: Việt Nam là nước xuất khẩu cà phê lớn thứ hai thế giới, chỉ sau Brazil. Đặc biệt, Việt N...
+    Latency: 12.32s
+  Temp 1.5: Một sự thật thú vị về Việt Nam là đất nước này là nhà sản xuất hạt tiêu lớn nhất thế giới, chiếm khoảng 35-40% tổng sản ...
+    Latency: 9.17s
+
+======================================================================
+THỬ NGHIỆM 2: So sánh latency & cost trên 5 model (Câu 1.2, 1.3)
+======================================================================
+Prompt: Giải thích khác biệt giữa machine learning và deep learning trong 3 câu.
+
+Model                           Latency  Tokens   Cost (USD)
+------------------------------------------------------------
+gpt-4o                            2.22s    123 $  0.001230
+gpt-4o-mini                       3.00s    144 $  0.000086
+deepseek-chat                     0.00s      0 $  0.000000
+gemini-2.5-flash                  3.47s     14 $  0.000008
+claude-sonnet-4-20250514         11.11s    145 $  0.002175
+
+--- Bảng tỷ lệ chi phí output (so với gpt-4o-mini) ---
+  gpt-4o                           16.7x so với mini
+  gpt-4o-mini                       1.0x so với mini
+  deepseek-chat                     4.7x so với mini
+  deepseek-reasoner                36.5x so với mini
+  gemini-2.5-flash                  1.0x so với mini
+  claude-sonnet-4-20250514         25.0x so với mini
+
+--- Workload projection: 10K users × 3 calls × 350 tokens output/ngày ---
+  gpt-4o                         $  105.00/ngày  $   3150.00/tháng
+  gpt-4o-mini                    $    6.30/ngày  $    189.00/tháng
+  deepseek-chat                  $   29.40/ngày  $    882.00/tháng
+  deepseek-reasoner              $  229.95/ngày  $   6898.50/tháng
+  gemini-2.5-flash               $    6.30/ngày  $    189.00/tháng
+  claude-sonnet-4-20250514       $  157.50/ngày  $   4725.00/tháng
+
+======================================================================
+THỬ NGHIỆM 3: Persona test trên 5 model (Câu 2.1)
+======================================================================
+Câu hỏi: Giải thích blockchain là gì?
+
+
+--- Model: gpt-4o ---
+  [Giáo viên tiểu học] (217 từ, 4.99s):
+    Blockchain giống như một cuốn sổ tay rất đặc biệt mà tất cả mọi người cùng nhau sử dụng để ghi chép. Nhưng điều thú vị là cuốn sổ tay này không nằm ở một nơi cố định, mà mỗi người ...
+  [Chuyên gia tài chính] (218 từ, 4.29s):
+    Blockchain là một công nghệ sổ cái phân tán (Distributed Ledger Technology - DLT) được thiết kế để ghi lại các giao dịch một cách minh bạch, bảo mật và không thể thay đổi. Dưới đây...
+
+--- Model: gpt-4o-mini ---
+  [Giáo viên tiểu học] (170 từ, 3.52s):
+    Blockchain là một công nghệ giúp lưu trữ thông tin một cách an toàn và minh bạch. Hãy tưởng tượng rằng blockchain giống như một cuốn sổ lớn mà nhiều người cùng sử dụng. 
+
+Mỗi trang...
+  [Chuyên gia tài chính] (206 từ, 4.79s):
+    Blockchain là một công nghệ lưu trữ và truyền tải dữ liệu phân tán, cho phép ghi lại mọi giao dịch một cách an toàn, minh bạch và không thể thay đổi. Cấu trúc của blockchain bao gồ...
+
+--- Model: deepseek-chat ---
+  [Giáo viên tiểu học] (0 từ, 0s):
+    [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in group 'starter'. (request id: 20260724105534379391126O7HzxPaR)...
+  [Chuyên gia tài chính] (0 từ, 0s):
+    [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in group 'starter'. (request id: 20260724105534864587217YKGc4Kxw)...
+
+--- Model: gemini-2.5-flash ---
+  [Giáo viên tiểu học] (8 từ, 3.0s):
+    Chào con! Cô sẽ giải thích Blockchain một...
+  [Chuyên gia tài chính] (8 từ, 2.65s):
+    Tuyệt vời. Với tư cách là một chuyên...
+
+--- Model: claude-sonnet-4-20250514 ---
+  [Giáo viên tiểu học] (240 từ, 16.55s):
+    Chào con! Cô sẽ giải thích blockchain thật đơn giản nhé.
+
+**Blockchain giống như một cuốn sổ ma thuật mà nhiều người cùng ghi chép.**
+
+Tưởng tượng lớp học có một cuốn sổ đặc biệt:
+...
+  [Chuyên gia tài chính] (275 từ, 17.05s):
+    Blockchain là một cấu trúc dữ liệu phân tán dạng sổ cái (distributed ledger) sử dụng mật mã học để đảm bảo tính bất biến và minh bạch của giao dịch. Về mặt kỹ thuật:
+
+**Kiến trúc c...
+
+======================================================================
+THỬ NGHIỆM 4: Token count tiếng Việt vs tiếng Anh (Câu 2.2)
+======================================================================
+
+--- Mẫu 1 — Lịch sử Hà Nội ---
+  Tiếng Việt: 82 từ → 101 tokens (ước lượng: 109.3)
+  Tiếng Anh:  59 từ → 71 tokens (ước lượng: 78.7)
+  Tỷ lệ VI/EN: 1.42x
+  Sai số ước lượng tiếng Việt: 7.6%
+
+--- Mẫu 2 — Công nghệ AI ---
+  Tiếng Việt: 63 từ → 75 tokens (ước lượng: 84.0)
+  Tiếng Anh:  34 từ → 40 tokens (ước lượng: 45.3)
+  Tỷ lệ VI/EN: 1.88x
+  Sai số ước lượng tiếng Việt: 10.7%
+
+--- Mẫu 3 — Ẩm thực ---
+  Tiếng Việt: 49 từ → 66 tokens (ước lượng: 65.3)
+  Tiếng Anh:  40 từ → 50 tokens (ước lượng: 53.3)
+  Tỷ lệ VI/EN: 1.32x
+  Sai số ước lượng tiếng Việt: 1.0%
+
+======================================================================
+THỬ NGHIỆM 5: Streaming vs Non-streaming latency (Câu 3.1)
+======================================================================
+Prompt: Viết 1 đoạn 3 câu về lợi ích của AI trong y tế.
+
+--- Non-streaming (đo tổng thời gian) ---
+  gpt-4o                         TTLT=2.34s  (108 từ)
+  gpt-4o-mini                    TTLT=2.13s  (97 từ)
+  deepseek-chat                  [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in group 'starter'. (request id: 20260724105619735165715JZ8slnoe)", 'type': 'yescale_api_error'}}
+  gemini-2.5-flash               TTLT=2.26s  (5 từ)
+  claude-sonnet-4-20250514       TTLT=7.70s  (99 từ)
+
+--- Streaming (đo TTFT — Time-To-First-Token) ---
+  gpt-4o                         [ERROR] list index out of range
+  gpt-4o-mini                    [ERROR] list index out of range
+  deepseek-chat                  [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in group 'starter'. (request id: 20260724105635292366682DwsPZRqF)", 'type': 'yescale_api_error'}}
+  gemini-2.5-flash               [ERROR] list index out of range
+  claude-sonnet-4-20250514       [ERROR] list index out of range
+
+======================================================================
+THỬ NGHIỆM 6: Multi-model creative & reasoning comparison
+======================================================================
+
+Prompt: Viết 1 bài thơ 4 câu về mùa thu Hà Nội.
+  [gpt-4o] (1.63s, 48 tokens):
+    Hà Nội vào thu lá vàng bay,  
+Gió nhẹ mang theo hương cốm say.  
+Hồ Gươm lấp lánh sương chiều xuống,  
+Phố cổ dịu dàng trong nắng lay....
+  [gpt-4o-mini] (1.7s, 49 tokens):
+    Những chiếc lá vàng rơi lả tả,  
+Gió heo may nhẹ thổi qua đường,  
+Hà Nội trong sắc thu lắng đọng,  
+Nỗi nhớ mùa thu, hồn vấn vương....
+  [deepseek-chat] (0s, 0 tokens):
+    [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in group 'starter'. (request id: 20...
+  [gemini-2.5-flash] (3.08s, 7 tokens):
+    Gió heo may se lạnh...
+  [claude-sonnet-4-20250514] (13.3s, 114 tokens):
+    Dưới đây là bài thơ 4 câu về mùa thu Hà Nội:
+
+**Mùa Thu Hà Nội**
+
+Gió thu về phố phường se lạnh,
+Lá vàng rơi khắp phố Hà Thành.
+Hương sen thoang thoản...
+
+Prompt: Tính 17 × 23 + 45 ÷ 9 và giải thích từng bước.
+  [gpt-4o] (2.01s, 163 tokens):
+    Để tính giá trị của biểu thức \(17 \times 23 + 45 \div 9\), chúng ta sẽ thực hiện theo thứ tự các phép toán như sau:
+
+1. **Nhân và chia trước:**
+   - ...
+  [gpt-4o-mini] (3.14s, 180 tokens):
+    Để tính biểu thức \( 17 \times 23 + 45 \div 9 \), chúng ta sẽ thực hiện các phép toán theo thứ tự ưu tiên: nhân và chia trước, rồi đến cộng.
+
+### Bước...
+  [deepseek-chat] (0s, 0 tokens):
+    [ERROR] Error code: 400 - {'error': {'code': 'invalid_request', 'message': "Model 'deepseek-chat' is not available in group 'starter'. (request id: 20...
+  [gemini-2.5-flash] (1.97s, 7 tokens):
+    Để tính biểu thức $1...
+  [claude-sonnet-4-20250514] (8.31s, 145 tokens):
+    Tôi sẽ tính toán biểu thức này theo thứ tự ưu tiên của các phép toán:
+
+**Bước 1: Thực hiện phép nhân**
+17 × 23 = 391
+
+**Bước 2: Thực hiện phép chia**
+...
+
+======================================================================
+HOÀN TẤT! Kết quả đã lưu tại: D:\AI_Thuc_Chien\lab01\experiment_results.txt
+======================================================================
